@@ -12,8 +12,11 @@ export async function GET() {
     const inquiries = await prisma.inquiry.findMany({
       orderBy: { createdAt: "desc" },
     });
+
     return NextResponse.json(inquiries);
   } catch (error) {
+    console.error("GET /api/inquiries error:", error);
+
     return NextResponse.json(
       { error: "Gagal mengambil data inquiry." },
       { status: 500 }
@@ -25,6 +28,7 @@ export async function GET() {
 export async function POST(request: Request) {
   try {
     const body = await request.json();
+
     const newInquiry = await prisma.inquiry.create({
       data: {
         fullName: body.fullName || body.nama,
@@ -36,7 +40,11 @@ export async function POST(request: Request) {
         status: "Baru",
       },
     });
-    return NextResponse.json({ success: true, data: newInquiry }, { status: 201 });
+
+    return NextResponse.json(
+      { success: true, data: newInquiry },
+      { status: 201 }
+    );
   } catch (error) {
     return NextResponse.json(
       { error: "Gagal mengirimkan inquiry." },
@@ -53,11 +61,16 @@ export async function PATCH(request: Request) {
 
   try {
     const { id, status } = await request.json();
+
     const updated = await prisma.inquiry.update({
       where: { id: Number(id) },
       data: { status },
     });
-    return NextResponse.json({ success: true, data: updated });
+
+    return NextResponse.json({
+      success: true,
+      data: updated,
+    });
   } catch (error) {
     return NextResponse.json(
       { error: "Gagal memperbarui status inquiry." },
@@ -77,7 +90,10 @@ export async function DELETE(request: Request) {
     const id = searchParams.get("id");
 
     if (!id) {
-      return NextResponse.json({ error: "ID tidak ditemukan" }, { status: 400 });
+      return NextResponse.json(
+        { error: "ID tidak ditemukan" },
+        { status: 400 }
+      );
     }
 
     await prisma.inquiry.delete({
