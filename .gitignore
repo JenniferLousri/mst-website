@@ -39,3 +39,14 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+/lib/generated/prisma
+
+# prisma
+/prisma/dev.db
+/lib/generated/prisma
+
+# local AI/editor config
+/.agents/
+/.claude/
+/.windsurf/
