@@ -1,7 +1,7 @@
 generator client {
-  provider = "prisma-client"
-  output   = "../lib/generated/prisma"
-  binaryTargets = ["native", "rhel-openssl-3.0.x"]
+  provider   = "prisma-client"
+  output     = "../lib/generated/prisma"
+  engineType = "client"
 }
 
 datasource db {
@@ -10,13 +10,13 @@ datasource db {
 }
 
 model Inquiry {
-  id          Int      @id @default(autoincrement())
-  fullName    String
-  company     String
-  email       String
-  phone       String
-  service     String
-  message     String
-  status      String   @default("Baru")
-  createdAt   DateTime @default(now())
+  id        Int      @id @default(autoincrement())
+  fullName  String
+  company   String
+  email     String
+  phone     String
+  service   String
+  message   String
+  status    String   @default("Baru")
+  createdAt DateTime @default(now())
 }
