@@ -85,7 +85,6 @@ export default function Contact() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [openFaq, setOpenFaq] = useState<number | null>(null);
 
-  // Aksesibilitas Keyboard (ESC to Close Modal)
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape" && isModalOpen) {
@@ -109,7 +108,6 @@ export default function Contact() {
     setIsLoading(true);
 
     try {
-      // 1. Map data frontend ke backend payload (fullName) & kirim ke /api/inquiries
       const response = await fetch("/api/inquiries", {
         method: "POST",
         headers: {
@@ -125,12 +123,10 @@ export default function Contact() {
         }),
       });
 
-      // 2. Validasi status HTTP response
       if (!response.ok) {
         throw new Error("Gagal menyimpan inquiry");
       }
 
-      // 3. Hanya tampilkan Success Modal jika HTTP status ok (2xx)
       setIsModalOpen(true);
     } catch (error) {
       console.error("Gagal mengirim data ke database:", error);
@@ -175,7 +171,6 @@ Terima kasih.`;
 
   const handleCloseModal = () => {
     setIsModalOpen(false);
-    // Reset Form state setelah modal ditutup
     setFormData({
       name: "",
       company: "",
@@ -186,7 +181,6 @@ Terima kasih.`;
     });
   };
 
-  // Direct Quick Link for Green WhatsApp Card (No Form Needed)
   const getQuickWaLink = () => {
     const quickMessage = `Halo CV Mitra Sukses Terus.
 
@@ -203,10 +197,10 @@ Terima kasih.`;
   };
 
   return (
-    <section id="contact" className="relative bg-slate-900/5 py-24 lg:py-32 overflow-hidden font-sans">
+    <section id="contact" className="relative bg-slate-900/5 py-12 sm:py-16 lg:py-20 overflow-hidden font-sans">
       
       {/* ================================================== */}
-      {/* ENHANCED PREMIUM BACKGROUND (MESH GRADIENT, GLOW, PATTERN, SVG LINES) */}
+      {/* BACKGROUND DECORATION ASLI (100% DIKEMBALIKAN) */}
       {/* ================================================== */}
       <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden">
         {/* Mesh Gradient 1: Smooth Blue Light from Bottom-Left */}
@@ -232,7 +226,7 @@ Terima kasih.`;
         {/* Radial Glow Putih di belakang Form Area */}
         <div className="absolute top-1/3 right-10 h-[500px] w-[600px] rounded-full bg-white/60 blur-[100px]" />
 
-        {/* Dotted Pattern Tipis (Hero & Services Style) */}
+        {/* Dotted Pattern Tipis */}
         <div
           className="absolute inset-0 bg-[radial-gradient(#64748b_1px,transparent_1px)] [background-size:28px_28px] opacity-[0.12]"
           style={{
@@ -264,18 +258,18 @@ Terima kasih.`;
         </svg>
       </div>
 
-      <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-8">
+      <div className="relative z-10 mx-auto max-w-6xl px-6 sm:px-10 lg:px-16">
         
-        {/* HEADER SECTION */}
-        <div className="mx-auto max-w-3xl text-center">
+        {/* HEADER SECTION (UKURAN DIKECILIN) */}
+        <div className="mx-auto max-w-2xl text-center">
           <motion.div
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
             variants={fadeUpVariants}
-            className="inline-flex items-center gap-2 rounded-full border border-red-200 bg-red-50/90 px-4 py-1.5 text-xs font-extrabold uppercase tracking-widest text-red-600 mb-6 shadow-xs backdrop-blur-md"
+            className="inline-flex items-center gap-2 rounded-full border border-red-200 bg-red-50/90 px-3.5 py-1 text-[11px] font-extrabold uppercase tracking-widest text-red-600 mb-3 shadow-xs backdrop-blur-md"
           >
-            <Sparkles size={14} className="text-red-600 animate-pulse" />
+            <Sparkles size={12} className="text-red-600 animate-pulse" />
             <span>Hubungi Kami</span>
           </motion.div>
 
@@ -284,7 +278,7 @@ Terima kasih.`;
             whileInView="visible"
             viewport={{ once: true }}
             variants={fadeUpVariants}
-            className="text-3xl font-extrabold tracking-tight text-slate-900 sm:text-4xl lg:text-5xl leading-tight"
+            className="text-2xl font-extrabold tracking-tight text-slate-900 sm:text-3xl lg:text-4xl leading-tight"
           >
             Mari Diskusikan Masa Depan & Legalitas Bisnis Anda
           </motion.h2>
@@ -294,7 +288,7 @@ Terima kasih.`;
             whileInView="visible"
             viewport={{ once: true }}
             variants={fadeUpVariants}
-            className="mt-5 text-base leading-relaxed text-slate-600 sm:text-lg"
+            className="mt-2 text-xs sm:text-sm font-medium leading-relaxed text-slate-600"
           >
             Konsultasikan kebutuhan pajak, pembukuan akuntansi, hingga legalitas perusahaan Anda bersama konsultan berpengalaman dari CV. Mitra Sukses Terus.
           </motion.p>
@@ -306,73 +300,72 @@ Terima kasih.`;
           whileInView="visible"
           viewport={{ once: true }}
           variants={staggerContainer}
-          className="mt-14 grid grid-cols-2 gap-4 sm:grid-cols-4 lg:gap-6"
+          className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-4 lg:gap-4"
         >
           {stats.map((stat, idx) => (
             <motion.div
               key={idx}
               variants={fadeUpVariants}
-              className="flex flex-col items-center justify-center rounded-2xl border border-slate-200/80 bg-white/80 p-5 text-center shadow-xs backdrop-blur-md transition-all hover:border-blue-200 hover:shadow-md"
+              className="flex flex-col items-center justify-center rounded-2xl border border-slate-200/80 bg-white/80 p-3.5 sm:p-4 text-center shadow-xs backdrop-blur-md transition-all hover:border-blue-200 hover:shadow-md"
             >
-              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-50 text-blue-600 mb-3">
-                <stat.icon size={20} />
+              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-blue-50 text-blue-600 mb-2">
+                <stat.icon size={16} />
               </div>
-              <span className="text-2xl font-black text-slate-900">{stat.value}</span>
-              <span className="mt-1 text-xs font-semibold text-slate-500">{stat.label}</span>
+              <span className="text-xl font-extrabold text-slate-900">{stat.value}</span>
+              <span className="mt-0.5 text-[11px] font-semibold text-slate-500">{stat.label}</span>
             </motion.div>
           ))}
         </motion.div>
 
-        {/* MAIN CONTENT GRID (INFORMASI KANAN/KIRI SAMA PERSIS) */}
-        <div className="mt-16 grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-8 items-start">
+        {/* MAIN CONTENT GRID */}
+        <div className="mt-10 grid grid-cols-1 gap-8 lg:grid-cols-12 lg:gap-8 items-start">
           
-          {/* LEFT SIDE: INFORMASI KANTOR RESMI & KARTU HIJAU */}
+          {/* LEFT SIDE: INFORMASI KANTOR RESMI */}
           <motion.div
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
             variants={fadeUpVariants}
-            className="lg:col-span-5 space-y-6"
+            className="lg:col-span-5 space-y-4"
           >
             {/* CARD INFO UTAMA */}
-            <div className="rounded-3xl border border-slate-200/90 bg-white/90 p-7 sm:p-9 shadow-xl shadow-slate-900/5 backdrop-blur-md space-y-7">
-              <div className="border-b border-slate-100 pb-5">
-                <h3 className="text-xl font-bold text-slate-900">
+            <div className="rounded-2xl sm:rounded-3xl border border-slate-200/90 bg-white/90 p-5 sm:p-6 shadow-lg shadow-slate-900/5 backdrop-blur-md space-y-5">
+              <div className="border-b border-slate-100 pb-3">
+                <h3 className="text-lg font-bold text-slate-900">
                   Kantor Operasional
                 </h3>
-                <p className="mt-1 text-xs font-medium text-slate-500">
+                <p className="mt-0.5 text-[11px] font-medium text-slate-500">
                   CV. Mitra Sukses Terus — Semarang, Jawa Tengah
                 </p>
               </div>
 
-              <div className="space-y-6 text-sm text-slate-600">
+              <div className="space-y-4 text-xs sm:text-sm text-slate-600">
                 {/* ALAMAT */}
-                <div className="flex items-start gap-4">
-                  <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-red-50 text-red-600 shadow-xs">
-                    <MapPin size={22} />
+                <div className="flex items-start gap-3">
+                  <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-red-50 text-red-600 shadow-xs">
+                    <MapPin size={18} />
                   </div>
                   <div>
-                    <h4 className="font-bold text-slate-900 text-sm">Alamat Utama</h4>
-                    <p className="mt-1 leading-relaxed text-slate-600">
+                    <h4 className="font-bold text-slate-900 text-xs sm:text-sm">Alamat Utama</h4>
+                    <p className="mt-0.5 leading-relaxed text-slate-600">
                       Jl. Cakrawala Barat III No.4,<br />
-                      Semarang 50149, Jawa Tengah,<br />
-                      Indonesia
+                      Semarang 50149, Jawa Tengah, Indonesia
                     </p>
                   </div>
                 </div>
 
                 {/* TELEPON & WA */}
-                <div className="flex items-start gap-4">
-                  <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-blue-50 text-blue-600 shadow-xs">
-                    <Phone size={22} />
+                <div className="flex items-start gap-3">
+                  <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-blue-50 text-blue-600 shadow-xs">
+                    <Phone size={18} />
                   </div>
                   <div>
-                    <h4 className="font-bold text-slate-900 text-sm">Telepon / WhatsApp</h4>
+                    <h4 className="font-bold text-slate-900 text-xs sm:text-sm">Telepon / WhatsApp</h4>
                     <a
                       href={getQuickWaLink()}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="mt-1 inline-block font-semibold text-slate-800 hover:text-emerald-600 transition-colors"
+                      className="mt-0.5 inline-block font-semibold text-slate-800 hover:text-emerald-600 transition-colors"
                     >
                       +62 821 3601 0705
                     </a>
@@ -380,15 +373,15 @@ Terima kasih.`;
                 </div>
 
                 {/* EMAIL */}
-                <div className="flex items-start gap-4">
-                  <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-blue-50 text-blue-600 shadow-xs">
-                    <Mail size={22} />
+                <div className="flex items-start gap-3">
+                  <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-blue-50 text-blue-600 shadow-xs">
+                    <Mail size={18} />
                   </div>
                   <div>
-                    <h4 className="font-bold text-slate-900 text-sm">Email Resmi</h4>
+                    <h4 className="font-bold text-slate-900 text-xs sm:text-sm">Email Resmi</h4>
                     <a
                       href="mailto:mitrasuksesterus12@gmail.com"
-                      className="mt-1 inline-block font-semibold text-slate-800 hover:text-blue-600 transition-colors"
+                      className="mt-0.5 inline-block font-semibold text-slate-800 hover:text-blue-600 transition-colors"
                     >
                       mitrasuksesterus12@gmail.com
                     </a>
@@ -396,67 +389,66 @@ Terima kasih.`;
                 </div>
 
                 {/* JAM OPERASIONAL */}
-                <div className="flex items-start gap-4">
-                  <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-slate-100 text-slate-700 shadow-xs">
-                    <Clock size={22} />
+                <div className="flex items-start gap-3">
+                  <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-slate-100 text-slate-700 shadow-xs">
+                    <Clock size={18} />
                   </div>
                   <div>
-                    <h4 className="font-bold text-slate-900 text-sm">Jam Kerja Kantor</h4>
-                    <p className="mt-1 leading-relaxed text-slate-600">
-                      Senin – Jumat<br />
-                      <span className="font-bold text-slate-900">08.00 – 17.00 WIB</span>
+                    <h4 className="font-bold text-slate-900 text-xs sm:text-sm">Jam Kerja Kantor</h4>
+                    <p className="mt-0.5 leading-relaxed text-slate-600">
+                      Senin – Jumat • <span className="font-bold text-slate-900">08.00 – 17.00 WIB</span>
                     </p>
                   </div>
                 </div>
               </div>
             </div>
 
-            {/* KARTU HIJAU WHATSAPP (JALUR 2: LANGSUNG BUKA WA TANPA FORM) */}
+            {/* KARTU HIJAU WHATSAPP */}
             <a
               href={getQuickWaLink()}
               target="_blank"
               rel="noopener noreferrer"
               className="
-                group flex items-center justify-between rounded-3xl
-                bg-emerald-500 p-6 text-white shadow-xl shadow-emerald-500/20
-                transition-all duration-300 hover:bg-emerald-600 hover:shadow-2xl hover:shadow-emerald-500/30
-                hover:-translate-y-1 cursor-pointer
+                group flex items-center justify-between rounded-2xl sm:rounded-3xl
+                bg-emerald-500 p-4 sm:p-5 text-white shadow-md shadow-emerald-500/20
+                transition-all duration-300 hover:bg-emerald-600 hover:shadow-lg hover:shadow-emerald-500/30
+                hover:-translate-y-0.5 cursor-pointer
               "
             >
-              <div className="flex items-center gap-4">
-                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-white/20 backdrop-blur-md">
-                  <MessageCircle size={26} className="fill-white text-emerald-500" />
+              <div className="flex items-center gap-3">
+                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-white/20 backdrop-blur-md">
+                  <MessageCircle size={22} className="fill-white text-emerald-500" />
                 </div>
                 <div>
-                  <h4 className="font-extrabold text-base leading-tight">Butuh Respon Cepat?</h4>
-                  <p className="text-xs text-emerald-100 font-medium mt-0.5">Chat langsung via WhatsApp resmi</p>
+                  <h4 className="font-bold text-sm leading-tight">Butuh Respon Cepat?</h4>
+                  <p className="text-[11px] text-emerald-100 font-medium mt-0.5">Chat langsung via WhatsApp resmi</p>
                 </div>
               </div>
-              <ArrowRight size={20} className="transition-transform group-hover:translate-x-1" />
+              <ArrowRight size={18} className="transition-transform group-hover:translate-x-1" />
             </a>
           </motion.div>
 
-          {/* RIGHT SIDE: FORMULIR DENGAN DYNAMIC WA REDIRECT */}
+          {/* RIGHT SIDE: FORMULIR */}
           <motion.div
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
             variants={fadeUpVariants}
-            className="lg:col-span-7 rounded-3xl border border-slate-200/90 bg-white/95 p-7 sm:p-10 shadow-xl shadow-slate-900/5 backdrop-blur-md"
+            className="lg:col-span-7 rounded-2xl sm:rounded-3xl border border-slate-200/90 bg-white/95 p-5 sm:p-7 shadow-lg shadow-slate-900/5 backdrop-blur-md"
           >
-            <div className="mb-8">
-              <h3 className="text-2xl font-black text-slate-900">
+            <div className="mb-5">
+              <h3 className="text-xl font-bold text-slate-900">
                 Kirim Pesan Konsultasi
               </h3>
-              <p className="mt-1 text-sm text-slate-500">
+              <p className="mt-0.5 text-xs text-slate-500">
                 Isi formulir di bawah ini, tim kami akan merespons maksimal dalam 1x24 jam kerja.
               </p>
             </div>
 
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+            <form onSubmit={handleSubmit} className="space-y-4">
+              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                 <div>
-                  <label className="block text-xs font-extrabold uppercase tracking-wider text-slate-700 mb-2">
+                  <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-700 mb-1.5">
                     Nama Lengkap *
                   </label>
                   <input
@@ -466,11 +458,11 @@ Terima kasih.`;
                     value={formData.name}
                     onChange={handleChange}
                     placeholder="Contoh: Budi Santoso"
-                    className="w-full rounded-2xl border border-slate-200 bg-slate-50/50 px-4 py-3.5 text-sm text-slate-900 outline-none transition-all focus:border-red-500 focus:bg-white focus:ring-4 focus:ring-red-500/10"
+                    className="w-full rounded-xl border border-slate-200 bg-slate-50/50 px-3.5 py-2.5 text-xs sm:text-sm text-slate-900 outline-none transition-all focus:border-red-500 focus:bg-white focus:ring-2 focus:ring-red-500/10"
                   />
                 </div>
                 <div>
-                  <label className="block text-xs font-extrabold uppercase tracking-wider text-slate-700 mb-2">
+                  <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-700 mb-1.5">
                     Nama Perusahaan / PT / CV
                   </label>
                   <input
@@ -479,14 +471,14 @@ Terima kasih.`;
                     value={formData.company}
                     onChange={handleChange}
                     placeholder="Contoh: PT Sukses Bersama"
-                    className="w-full rounded-2xl border border-slate-200 bg-slate-50/50 px-4 py-3.5 text-sm text-slate-900 outline-none transition-all focus:border-red-500 focus:bg-white focus:ring-4 focus:ring-red-500/10"
+                    className="w-full rounded-xl border border-slate-200 bg-slate-50/50 px-3.5 py-2.5 text-xs sm:text-sm text-slate-900 outline-none transition-all focus:border-red-500 focus:bg-white focus:ring-2 focus:ring-red-500/10"
                   />
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                 <div>
-                  <label className="block text-xs font-extrabold uppercase tracking-wider text-slate-700 mb-2">
+                  <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-700 mb-1.5">
                     Email *
                   </label>
                   <input
@@ -496,11 +488,11 @@ Terima kasih.`;
                     value={formData.email}
                     onChange={handleChange}
                     placeholder="nama@perusahaan.com"
-                    className="w-full rounded-2xl border border-slate-200 bg-slate-50/50 px-4 py-3.5 text-sm text-slate-900 outline-none transition-all focus:border-red-500 focus:bg-white focus:ring-4 focus:ring-red-500/10"
+                    className="w-full rounded-xl border border-slate-200 bg-slate-50/50 px-3.5 py-2.5 text-xs sm:text-sm text-slate-900 outline-none transition-all focus:border-red-500 focus:bg-white focus:ring-2 focus:ring-red-500/10"
                   />
                 </div>
                 <div>
-                  <label className="block text-xs font-extrabold uppercase tracking-wider text-slate-700 mb-2">
+                  <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-700 mb-1.5">
                     Nomor WhatsApp / Telepon *
                   </label>
                   <input
@@ -510,13 +502,13 @@ Terima kasih.`;
                     value={formData.phone}
                     onChange={handleChange}
                     placeholder="08123456789"
-                    className="w-full rounded-2xl border border-slate-200 bg-slate-50/50 px-4 py-3.5 text-sm text-slate-900 outline-none transition-all focus:border-red-500 focus:bg-white focus:ring-4 focus:ring-red-500/10"
+                    className="w-full rounded-xl border border-slate-200 bg-slate-50/50 px-3.5 py-2.5 text-xs sm:text-sm text-slate-900 outline-none transition-all focus:border-red-500 focus:bg-white focus:ring-2 focus:ring-red-500/10"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="block text-xs font-extrabold uppercase tracking-wider text-slate-700 mb-2">
+                <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-700 mb-1.5">
                   Layanan yang Diperlukan *
                 </label>
                 <select
@@ -524,7 +516,7 @@ Terima kasih.`;
                   required
                   value={formData.service}
                   onChange={handleChange}
-                  className="w-full rounded-2xl border border-slate-200 bg-slate-50/50 px-4 py-3.5 text-sm text-slate-900 outline-none transition-all focus:border-red-500 focus:bg-white focus:ring-4 focus:ring-red-500/10 cursor-pointer"
+                  className="w-full rounded-xl border border-slate-200 bg-slate-50/50 px-3.5 py-2.5 text-xs sm:text-sm text-slate-900 outline-none transition-all focus:border-red-500 focus:bg-white focus:ring-2 focus:ring-red-500/10 cursor-pointer"
                 >
                   <option value="">-- Pilih Layanan --</option>
                   <option value="Perpajakan">Layanan Perpajakan (SPT, Tax Audit, PPh/PPN)</option>
@@ -537,17 +529,17 @@ Terima kasih.`;
               </div>
 
               <div>
-                <label className="block text-xs font-extrabold uppercase tracking-wider text-slate-700 mb-2">
+                <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-700 mb-1.5">
                   Detail Pesan / Pertanyaan *
                 </label>
                 <textarea
                   name="message"
-                  rows={4}
+                  rows={3}
                   required
                   value={formData.message}
                   onChange={handleChange}
                   placeholder="Tuliskan gambaran singkat kebutuhan atau kendala perusahaan Anda..."
-                  className="w-full rounded-2xl border border-slate-200 bg-slate-50/50 px-4 py-3.5 text-sm text-slate-900 outline-none transition-all focus:border-red-500 focus:bg-white focus:ring-4 focus:ring-red-500/10"
+                  className="w-full rounded-xl border border-slate-200 bg-slate-50/50 px-3.5 py-2.5 text-xs sm:text-sm text-slate-900 outline-none transition-all focus:border-red-500 focus:bg-white focus:ring-2 focus:ring-red-500/10"
                 />
               </div>
 
@@ -555,22 +547,22 @@ Terima kasih.`;
                 type="submit"
                 disabled={isLoading}
                 className="
-                  w-full inline-flex items-center justify-center gap-3 rounded-2xl
-                  bg-red-600 px-8 py-4 text-sm font-extrabold text-white
-                  shadow-lg shadow-red-600/25 transition-all duration-300
-                  hover:bg-red-700 hover:shadow-xl hover:shadow-red-600/35
+                  w-full inline-flex items-center justify-center gap-2 rounded-xl
+                  bg-red-600 px-6 py-3 text-xs sm:text-sm font-bold text-white
+                  shadow-md shadow-red-600/20 transition-all duration-300
+                  hover:bg-red-700 hover:shadow-lg hover:shadow-red-600/30
                   hover:-translate-y-0.5 active:translate-y-0 cursor-pointer
                   disabled:opacity-70 disabled:cursor-not-allowed
                 "
               >
                 {isLoading ? (
                   <>
-                    <Loader2 size={18} className="animate-spin" />
+                    <Loader2 size={16} className="animate-spin" />
                     <span>Memproses Data...</span>
                   </>
                 ) : (
                   <>
-                    <Send size={18} />
+                    <Send size={16} />
                     <span>Kirim Permintaan Konsultasi</span>
                   </>
                 )}
@@ -585,9 +577,9 @@ Terima kasih.`;
           whileInView="visible"
           viewport={{ once: true }}
           variants={fadeUpVariants}
-          className="mt-16 rounded-3xl overflow-hidden border border-slate-200/80 bg-white/90 p-3 shadow-xl shadow-slate-900/5 backdrop-blur-md"
+          className="mt-10 rounded-2xl overflow-hidden border border-slate-200/80 bg-white/90 p-2 shadow-lg shadow-slate-900/5 backdrop-blur-md"
         >
-          <div className="relative h-[350px] w-full rounded-2xl overflow-hidden bg-slate-100">
+          <div className="relative h-[280px] sm:h-[320px] w-full rounded-xl overflow-hidden bg-slate-100">
             <iframe
               title="Peta Lokasi CV Mitra Sukses Terus"
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.334469730303!2d110.3842133!3d-6.9698282!2m3!1f0!2f0!3f0!2m3!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e70f4d34f2d2bb7%3A0x6b63d9172bf4db24!2sJl.%20Cakrawala%20Barat%20III%20No.4%2C%20Tawangsari%2C%20Kec.%20Semarang%20Barat%2C%20Kota%20Semarang%2C%20Jawa%20Tengah%2050149!5e0!3m2!1sid!2sid!4v1700000000000!5m2!1sid!2sid"
@@ -607,30 +599,30 @@ Terima kasih.`;
           whileInView="visible"
           viewport={{ once: true }}
           variants={fadeUpVariants}
-          className="mt-20 max-w-4xl mx-auto"
+          className="mt-12 max-w-3xl mx-auto"
         >
-          <div className="text-center mb-10">
-            <h3 className="text-2xl font-black text-slate-900">
+          <div className="text-center mb-6">
+            <h3 className="text-xl font-bold text-slate-900">
               Pertanyaan yang Sering Diajukan (FAQ)
             </h3>
-            <p className="mt-1 text-sm text-slate-500">
+            <p className="mt-0.5 text-xs text-slate-500">
               Jawaban ringkas seputar proses konsultasi dan kerjasama dengan kami
             </p>
           </div>
 
-          <div className="space-y-4">
+          <div className="space-y-3">
             {faqs.map((faq, idx) => (
               <div
                 key={idx}
-                className="rounded-2xl border border-slate-200/80 bg-white/90 overflow-hidden shadow-xs backdrop-blur-md transition-all hover:border-slate-300"
+                className="rounded-xl border border-slate-200/80 bg-white/90 overflow-hidden shadow-xs backdrop-blur-md transition-all hover:border-slate-300"
               >
                 <button
                   onClick={() => toggleFaq(idx)}
-                  className="flex w-full items-center justify-between p-5 text-left text-sm font-bold text-slate-900 outline-none focus:bg-slate-50 cursor-pointer"
+                  className="flex w-full items-center justify-between p-4 text-left text-xs sm:text-sm font-bold text-slate-900 outline-none focus:bg-slate-50 cursor-pointer"
                 >
                   <span>{faq.question}</span>
                   <ChevronDown
-                    size={18}
+                    size={16}
                     className={`shrink-0 text-slate-500 transition-transform duration-300 ${
                       openFaq === idx ? "rotate-180 text-red-600" : ""
                     }`}
@@ -643,9 +635,9 @@ Terima kasih.`;
                       initial={{ height: 0, opacity: 0 }}
                       animate={{ height: "auto", opacity: 1 }}
                       exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.3, ease: "easeInOut" }}
+                      transition={{ duration: 0.25, ease: "easeInOut" }}
                     >
-                      <div className="border-t border-slate-100 p-5 pt-2 text-sm leading-relaxed text-slate-600 bg-slate-50/50">
+                      <div className="border-t border-slate-100 p-4 pt-2 text-xs sm:text-sm leading-relaxed text-slate-600 bg-slate-50/50">
                         {faq.answer}
                       </div>
                     </motion.div>
@@ -658,9 +650,7 @@ Terima kasih.`;
 
       </div>
 
-      {/* ================================================== */}
-      {/* MODERN SUCCESS DIALOG / MODAL (FRAMER MOTION) */}
-      {/* ================================================== */}
+      {/* MODERN SUCCESS DIALOG / MODAL */}
       <AnimatePresence>
         {isModalOpen && (
           <div
@@ -670,94 +660,84 @@ Terima kasih.`;
             aria-labelledby="modal-title"
             className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 overflow-y-auto"
           >
-            {/* OVERLAY / BACKDROP WITH FADE IN/OUT */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              transition={{ duration: 0.25 }}
+              transition={{ duration: 0.2 }}
               onClick={handleCloseModal}
               className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm"
             />
 
-            {/* DIALOG BOX WITH SCALE & FADE */}
             <motion.div
-              initial={{ opacity: 0, scale: 0.9, y: 20 }}
+              initial={{ opacity: 0, scale: 0.95, y: 15 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.9, y: 20 }}
-              transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-              className="relative z-10 w-full max-w-[480px] rounded-3xl bg-white p-6 sm:p-8 shadow-2xl border border-slate-100 text-center text-slate-900"
+              exit={{ opacity: 0, scale: 0.95, y: 15 }}
+              transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
+              className="relative z-10 w-full max-w-[440px] rounded-2xl bg-white p-5 sm:p-6 shadow-2xl border border-slate-100 text-center text-slate-900"
             >
-              {/* TOMBOL CLOSE KECIL DIPOJOK ATAS */}
               <button
                 onClick={handleCloseModal}
-                className="absolute top-5 right-5 p-2 text-slate-400 hover:text-slate-600 hover:bg-slate-100 rounded-full transition-colors cursor-pointer"
+                className="absolute top-4 right-4 p-1.5 text-slate-400 hover:text-slate-600 hover:bg-slate-100 rounded-full transition-colors cursor-pointer"
                 aria-label="Tutup Dialog"
               >
-                <X size={20} />
+                <X size={18} />
               </button>
 
-              {/* ICON CENTANG HIJAU BESAR */}
-              <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-emerald-100 text-emerald-500 mb-5 shadow-inner">
-                <CheckCircle2 size={48} className="stroke-[2.2]" />
+              <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-emerald-100 text-emerald-500 mb-4 shadow-inner">
+                <CheckCircle2 size={40} className="stroke-[2.2]" />
               </div>
 
-              {/* JUDUL */}
               <h3
                 id="modal-title"
-                className="text-2xl font-black tracking-tight text-slate-900"
+                className="text-xl font-bold tracking-tight text-slate-900"
               >
                 Permintaan Berhasil Dikirim
               </h3>
 
-              {/* ISI */}
-              <p className="mt-3 text-sm leading-relaxed text-slate-600">
-                Terima kasih telah menghubungi CV Mitra Sukses Terus. Permintaan konsultasi Anda telah berhasil kami terima. Tim kami akan segera meninjau data Anda dan menghubungi Anda melalui WhatsApp atau email yang telah Anda masukkan pada jam operasional.
+              <p className="mt-2 text-xs sm:text-sm leading-relaxed text-slate-600">
+                Terima kasih telah menghubungi CV Mitra Sukses Terus. Permintaan konsultasi Anda telah berhasil kami terima. Tim kami akan segera meninjau data Anda dan menghubungi Anda melalui WhatsApp atau email.
               </p>
 
-              {/* INFO BOX ENTERPRISE (JAM OPERASIONAL) */}
-              <div className="mt-5 rounded-2xl bg-sky-50/80 border border-sky-100 p-4 text-left flex items-start gap-3 text-sky-900">
-                <Info size={20} className="shrink-0 text-sky-600 mt-0.5" />
-                <div className="text-xs leading-relaxed space-y-1">
-                  <p className="font-extrabold text-sky-950">
+              <div className="mt-4 rounded-xl bg-sky-50/80 border border-sky-100 p-3 text-left flex items-start gap-2.5 text-sky-900">
+                <Info size={18} className="shrink-0 text-sky-600 mt-0.5" />
+                <div className="text-[11px] leading-relaxed space-y-0.5">
+                  <p className="font-bold text-sky-950">
                     Jam Operasional
                   </p>
                   <p className="font-semibold text-sky-900">
                     Senin–Jumat • 08.00–17.00 WIB
                   </p>
                   <p className="text-sky-700/90 pt-1 border-t border-sky-200/60">
-                    Permintaan yang dikirim di luar jam operasional akan diproses pada hari kerja berikutnya.
+                    Permintaan di luar jam operasional diproses pada hari kerja berikutnya.
                   </p>
                 </div>
               </div>
 
-              {/* ACTION BUTTONS */}
-              <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-3">
-                {/* BUTTON KIRI (SECONDARY): TUTUP */}
+              <div className="mt-5 grid grid-cols-1 sm:grid-cols-2 gap-2.5">
                 <button
                   type="button"
                   onClick={handleCloseModal}
                   className="
-                    w-full py-3.5 px-4 rounded-xl text-xs font-bold text-slate-700
+                    w-full py-2.5 px-3 rounded-lg text-xs font-bold text-slate-700
                     bg-slate-100 hover:bg-slate-200 transition-colors cursor-pointer
-                    focus:ring-2 focus:ring-slate-400 outline-none
+                    outline-none
                   "
                 >
                   Tutup
                 </button>
 
-                {/* BUTTON KANAN (PRIMARY): CHAT VIA WHATSAPP */}
                 <button
                   type="button"
                   onClick={handleOpenWhatsApp}
                   className="
-                    w-full py-3.5 px-4 rounded-xl text-xs font-bold text-white
+                    w-full py-2.5 px-3 rounded-lg text-xs font-bold text-white
                     bg-emerald-500 hover:bg-emerald-600 shadow-md shadow-emerald-500/20
-                    transition-all cursor-pointer flex items-center justify-center gap-2
-                    focus:ring-2 focus:ring-emerald-400 outline-none
+                    transition-all cursor-pointer flex items-center justify-center gap-1.5
+                    outline-none
                   "
                 >
-                  <MessageCircle size={16} className="fill-white" />
+                  <MessageCircle size={15} className="fill-white" />
                   <span>Chat via WhatsApp</span>
                 </button>
               </div>

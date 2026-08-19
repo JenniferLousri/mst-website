@@ -6,7 +6,6 @@ import HeroContent from "./HeroContent";
 import HeroImage from "./HeroImage";
 
 export default function Hero() {
-  // Mouse position tracking untuk Micro Parallax Effect
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
 
@@ -24,25 +23,19 @@ export default function Hero() {
     <section 
       id="home"
       onMouseMove={handleMouseMove}
-      className="relative min-h-[90vh] w-full overflow-hidden bg-slate-50/50 py-12 lg:py-20 flex items-center pt-28"
+      className="relative min-h-[80vh] w-full overflow-hidden bg-slate-50/50 py-8 lg:py-12 flex items-center pt-24 lg:pt-28"
     >
-      {/* 1. Multi-layered Ambient Background */}
       <HeroBackground mouseX={smoothMouseX} mouseY={smoothMouseY} />
 
-      {/* 2. Main Hero Container */}
-      <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-8 w-full">
-        <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-12 lg:gap-8">
-          
-          {/* Column Kiri: Content & Branding (Span 6) */}
+      {/* Memberikan margin samping yang lebih lega dengan max-w-6xl dan px-8 lg:px-16 */}
+      <div className="relative z-10 mx-auto max-w-6xl px-6 sm:px-10 lg:px-16 w-full">
+        <div className="grid grid-cols-1 items-center gap-8 lg:grid-cols-12 lg:gap-8">
           <div className="lg:col-span-6">
             <HeroContent />
           </div>
-
-          {/* Column Kanan: Image Frame & Floating Glass Card (Span 6) */}
           <div className="lg:col-span-6 flex justify-center lg:justify-end">
             <HeroImage />
           </div>
-
         </div>
       </div>
     </section>

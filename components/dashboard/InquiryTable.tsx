@@ -43,26 +43,26 @@ export default function InquiryTable({
   const endItem = Math.min(currentPage * pageSize, totalFilteredItems);
 
   return (
-    <div className="overflow-hidden rounded-2xl border border-slate-200/90 bg-white shadow-xs">
+    <div className="overflow-hidden rounded-xl border border-slate-200/90 bg-white shadow-xs">
       <div className="overflow-x-auto">
         <table className="w-full text-left text-xs text-slate-600">
-          <thead className="border-b border-slate-100 bg-slate-50/70 text-[11px] font-extrabold uppercase tracking-wider text-slate-500">
+          <thead className="border-b border-slate-100 bg-slate-50/70 text-[10px] font-extrabold uppercase tracking-wider text-slate-500">
             <tr>
-              <th className="py-3.5 px-4 text-center w-12">No.</th>
-              <th className="py-3.5 px-4">Nama</th>
-              <th className="py-3.5 px-4">Perusahaan</th>
-              <th className="py-3.5 px-4">Layanan</th>
-              <th className="py-3.5 px-4">Status</th>
-              <th className="py-3.5 px-4">Tanggal</th>
-              <th className="py-3.5 px-4 text-center w-28">Aksi</th>
+              <th className="py-2.5 px-3 text-center w-10">No.</th>
+              <th className="py-2.5 px-3">Nama</th>
+              <th className="py-2.5 px-3">Perusahaan</th>
+              <th className="py-2.5 px-3">Layanan</th>
+              <th className="py-2.5 px-3">Status</th>
+              <th className="py-2.5 px-3">Tanggal</th>
+              <th className="py-2.5 px-3 text-center w-24">Aksi</th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-slate-100 font-medium">
+          <tbody className="divide-y divide-slate-100 font-medium text-xs">
             {inquiries.length === 0 ? (
               <tr>
                 <td
                   colSpan={7}
-                  className="py-12 text-center text-sm font-medium text-slate-400"
+                  className="py-10 text-center text-xs font-medium text-slate-400"
                 >
                   Tidak ada data inquiry yang ditemukan.
                 </td>
@@ -78,49 +78,49 @@ export default function InquiryTable({
                       isActive ? "bg-blue-50/40" : "hover:bg-slate-50/60"
                     }`}
                   >
-                    <td className="py-3.5 px-4 text-center font-bold text-slate-400">
+                    <td className="py-2.5 px-3 text-center font-bold text-slate-400">
                       {rowNumber}
                     </td>
-                    <td className="py-3.5 px-4 font-bold text-slate-900">
+                    <td className="py-2.5 px-3 font-bold text-slate-900">
                       {item.nama}
                     </td>
-                    <td className="py-3.5 px-4 text-slate-600">
+                    <td className="py-2.5 px-3 text-slate-600">
                       {item.perusahaan}
                     </td>
-                    <td className="py-3.5 px-4 text-slate-600">
+                    <td className="py-2.5 px-3 text-slate-600">
                       {item.layanan}
                     </td>
-                    <td className="py-3.5 px-4">
+                    <td className="py-2.5 px-3">
                       <span
-                        className={`inline-flex items-center rounded-lg border px-2.5 py-0.5 text-[11px] font-extrabold ${getBadgeStyle(
+                        className={`inline-flex items-center rounded-md border px-2 py-0.5 text-[10px] font-extrabold ${getBadgeStyle(
                           item.status
                         )}`}
                       >
                         {item.status}
                       </span>
                     </td>
-                    <td className="py-3.5 px-4 text-slate-500">
+                    <td className="py-2.5 px-3 text-slate-500 text-[11px]">
                       {item.tanggal}
                     </td>
-                    <td className="py-3.5 px-4 text-center">
-                      <div className="flex items-center justify-center gap-1.5">
+                    <td className="py-2.5 px-3 text-center">
+                      <div className="flex items-center justify-center gap-1">
                         <button
                           onClick={() => onView(item)}
                           title="View Detail"
-                          className={`flex h-8 w-8 items-center justify-center rounded-xl transition-all ${
+                          className={`flex h-7 w-7 items-center justify-center rounded-lg transition-all ${
                             isActive
                               ? "bg-blue-600 text-white"
                               : "bg-blue-50 text-blue-600 hover:bg-blue-100"
                           }`}
                         >
-                          <Eye size={15} />
+                          <Eye size={13} />
                         </button>
                         <button
                           onClick={() => onDelete(item.id)}
                           title="Delete"
-                          className="flex h-8 w-8 items-center justify-center rounded-xl bg-red-50 text-red-600 transition-all hover:bg-red-100"
+                          className="flex h-7 w-7 items-center justify-center rounded-lg bg-red-50 text-red-600 transition-all hover:bg-red-100"
                         >
-                          <Trash2 size={15} />
+                          <Trash2 size={13} />
                         </button>
                       </div>
                     </td>
@@ -132,8 +132,8 @@ export default function InquiryTable({
         </table>
       </div>
 
-      {/* Table Pagination Footer */}
-      <div className="flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-slate-100 px-4 py-3 text-xs text-slate-500">
+      {/* Pagination Footer */}
+      <div className="flex flex-col sm:flex-row items-center justify-between gap-3 border-t border-slate-100 px-3 py-2 text-[11px] text-slate-500">
         <span>
           Menampilkan {startItem} - {endItem} dari {totalFilteredItems} data
         </span>
@@ -141,7 +141,7 @@ export default function InquiryTable({
           <button
             onClick={() => onPageChange(currentPage - 1)}
             disabled={currentPage <= 1}
-            className="h-8 w-8 rounded-lg border border-slate-200 text-slate-500 hover:bg-slate-50 disabled:opacity-40 disabled:hover:bg-transparent flex items-center justify-center transition-all cursor-pointer disabled:cursor-not-allowed"
+            className="h-7 w-7 rounded-md border border-slate-200 text-slate-500 hover:bg-slate-50 disabled:opacity-40 disabled:hover:bg-transparent flex items-center justify-center transition-all cursor-pointer disabled:cursor-not-allowed"
           >
             &lt;
           </button>
@@ -149,7 +149,7 @@ export default function InquiryTable({
             <button
               key={page}
               onClick={() => onPageChange(page)}
-              className={`h-8 w-8 rounded-lg font-bold flex items-center justify-center transition-all cursor-pointer ${
+              className={`h-7 w-7 rounded-md font-bold flex items-center justify-center transition-all cursor-pointer ${
                 currentPage === page
                   ? "bg-blue-600 text-white"
                   : "border border-slate-200 text-slate-600 hover:bg-slate-50"
@@ -161,7 +161,7 @@ export default function InquiryTable({
           <button
             onClick={() => onPageChange(currentPage + 1)}
             disabled={currentPage >= totalPages || totalPages === 0}
-            className="h-8 w-8 rounded-lg border border-slate-200 text-slate-500 hover:bg-slate-50 disabled:opacity-40 disabled:hover:bg-transparent flex items-center justify-center transition-all cursor-pointer disabled:cursor-not-allowed"
+            className="h-7 w-7 rounded-md border border-slate-200 text-slate-500 hover:bg-slate-50 disabled:opacity-40 disabled:hover:bg-transparent flex items-center justify-center transition-all cursor-pointer disabled:cursor-not-allowed"
           >
             &gt;
           </button>

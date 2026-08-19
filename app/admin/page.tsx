@@ -233,33 +233,33 @@ export default function AdminDashboardPage() {
       <TopNav inquiries={inquiries} onSelectInquiry={handleView} />
 
       {/* Main Container */}
-      <main className="mx-auto max-w-[1440px] px-4 py-8 sm:px-6 lg:px-8">
-        {/* Page Header */}
-        <div className="mb-6">
-          <h2 className="text-2xl font-extrabold tracking-tight text-slate-900 sm:text-3xl">
+      <main className="mx-auto max-w-[1440px] px-4 py-5 sm:px-6">
+        {/* Page Header Compact */}
+        <div className="mb-4">
+          <h2 className="text-xl font-extrabold tracking-tight text-slate-900 sm:text-2xl">
             Dashboard Inquiry
           </h2>
-          <p className="mt-1 text-xs text-slate-500 sm:text-sm">
+          <p className="mt-0.5 text-xs text-slate-500">
             Kelola dan pantau semua permintaan konsultasi dari website.
           </p>
         </div>
 
         {/* Ringkasan Statistik Cards */}
-        <section className="mb-8">
+        <section className="mb-4">
           <SummaryCards inquiries={inquiries} />
         </section>
 
         {/* Error State Banner Minimalist */}
         {error && (
-          <div className="mb-4 rounded-xl border border-red-200 bg-red-50 p-3 text-xs font-semibold text-red-700">
+          <div className="mb-3 rounded-lg border border-red-200 bg-red-50 p-2.5 text-xs font-semibold text-red-700">
             {error}
           </div>
         )}
 
         {/* Content Layout: Table + Side Drawer */}
-        <div className="flex flex-col gap-6 lg:flex-row lg:items-start">
+        <div className="flex flex-col gap-4 lg:flex-row lg:items-start">
           {/* Main Content Area (Toolbar + Table) */}
-          <div className="flex-1 space-y-4">
+          <div className="flex-1 space-y-3">
             <SearchToolbar
               searchTerm={searchTerm}
               setSearchTerm={setSearchTerm}
@@ -271,7 +271,7 @@ export default function AdminDashboardPage() {
 
             {/* Loading Indicator / Table */}
             {loading ? (
-              <div className="flex h-64 items-center justify-center rounded-2xl border border-slate-200/90 bg-white shadow-xs">
+              <div className="flex h-56 items-center justify-center rounded-xl border border-slate-200/90 bg-white shadow-xs">
                 <div className="flex items-center gap-2 text-xs font-semibold text-slate-400">
                   <div className="h-4 w-4 animate-spin rounded-full border-2 border-slate-300 border-t-blue-600"></div>
                   <span>Memuat data inquiry...</span>

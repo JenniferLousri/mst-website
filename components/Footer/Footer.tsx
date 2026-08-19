@@ -13,24 +13,24 @@ import {
 import { getWhatsAppLink } from "@/lib/whatsapp";
 
 const containerVariants: Variants = {
-  hidden: { opacity: 0, y: 30 },
+  hidden: { opacity: 0, y: 20 },
   visible: {
     opacity: 1,
     y: 0,
     transition: {
-      duration: 0.8,
+      duration: 0.6,
       ease: [0.16, 1, 0.3, 1],
-      staggerChildren: 0.1,
+      staggerChildren: 0.08,
     },
   },
 };
 
 const itemVariants: Variants = {
-  hidden: { opacity: 0, y: 15 },
+  hidden: { opacity: 0, y: 10 },
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.5, ease: "easeOut" },
+    transition: { duration: 0.4, ease: "easeOut" },
   },
 };
 
@@ -75,50 +75,50 @@ export default function Footer() {
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#0b1e38]/40 to-[#061224]/80" />
       </div>
 
-      {/* FOOTER CONTENT */}
+      {/* FOOTER CONTENT (COMPACT) */}
       <motion.div
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, margin: "-50px" }}
         variants={containerVariants}
-        className="relative z-10 mx-auto max-w-7xl px-6 pt-16 pb-12 lg:px-8 lg:pt-20 lg:pb-16"
+        className="relative z-10 mx-auto max-w-7xl px-6 pt-10 pb-8 sm:pt-12 sm:pb-10 lg:px-8"
       >
-        <div className="grid grid-cols-1 gap-12 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8">
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8">
           
           {/* KOLOM 1: LOGO & DESKRIPSI */}
-          <motion.div variants={itemVariants} className="space-y-4">
-            <div className="flex items-center gap-3">
-              <div className="relative flex h-11 w-11 items-center justify-center rounded-xl bg-white/95 p-1.5 shadow-md shadow-black/20 ring-1 ring-white/10">
+          <motion.div variants={itemVariants} className="space-y-2.5">
+            <div className="flex items-center gap-2.5">
+              <div className="relative flex h-9 w-9 items-center justify-center rounded-lg bg-white/95 p-1 shadow-md shadow-black/20 ring-1 ring-white/10">
                 <Image
                   src="/logo.png"
                   alt="CV Mitra Sukses Terus Logo"
-                  width={36}
-                  height={36}
+                  width={30}
+                  height={30}
                   className="object-contain"
                 />
               </div>
               <div>
-                <h3 className="text-base font-bold text-white tracking-tight leading-none">
+                <h3 className="text-sm font-bold text-white tracking-tight leading-none">
                   CV. Mitra Sukses Terus
                 </h3>
-                <p className="mt-1 text-[11px] font-semibold text-blue-400 uppercase tracking-wider">
+                <p className="mt-0.5 text-[10px] font-semibold text-blue-400 uppercase tracking-wider">
                   Tax • Accounting • Legal • Business
                 </p>
               </div>
             </div>
 
-            <p className="text-sm leading-relaxed text-slate-400 font-normal pt-1">
+            <p className="text-xs leading-relaxed text-slate-400 font-normal">
               Mitra terpercaya dalam memberikan solusi perpajakan, akuntansi,
               legalitas, dan konsultasi bisnis bagi perusahaan di Indonesia.
             </p>
           </motion.div>
 
           {/* KOLOM 2: PERUSAHAAN */}
-          <motion.div variants={itemVariants} className="space-y-4 lg:pl-6">
-            <h4 className="text-sm font-bold uppercase tracking-widest text-white">
+          <motion.div variants={itemVariants} className="space-y-2.5 lg:pl-6">
+            <h4 className="text-xs font-bold uppercase tracking-widest text-white">
               Perusahaan
             </h4>
-            <ul className="space-y-2.5 text-sm">
+            <ul className="space-y-1.5 text-xs">
               {[
                 { name: "Tentang Kami", id: "about" },
                 { name: "Layanan", id: "services" },
@@ -140,11 +140,11 @@ export default function Footer() {
           </motion.div>
 
           {/* KOLOM 3: LAYANAN */}
-          <motion.div variants={itemVariants} className="space-y-4">
-            <h4 className="text-sm font-bold uppercase tracking-widest text-white">
+          <motion.div variants={itemVariants} className="space-y-2.5">
+            <h4 className="text-xs font-bold uppercase tracking-widest text-white">
               Layanan
             </h4>
-            <ul className="space-y-2.5 text-sm text-slate-400">
+            <ul className="space-y-1.5 text-xs text-slate-400">
               <li className="hover:text-slate-300 transition-colors">Perpajakan</li>
               <li className="hover:text-slate-300 transition-colors">Akuntansi & Pembukuan</li>
               <li className="hover:text-slate-300 transition-colors">Legalitas Badan Usaha</li>
@@ -154,20 +154,20 @@ export default function Footer() {
           </motion.div>
 
           {/* KOLOM 4: HUBUNGI KAMI */}
-          <motion.div variants={itemVariants} className="space-y-4">
-            <h4 className="text-sm font-bold uppercase tracking-widest text-white">
+          <motion.div variants={itemVariants} className="space-y-2.5">
+            <h4 className="text-xs font-bold uppercase tracking-widest text-white">
               Hubungi Kami
             </h4>
-            <ul className="space-y-3.5 text-sm text-slate-400">
-              <li className="flex items-start gap-3">
-                <MapPin size={18} className="mt-0.5 text-blue-400 shrink-0" />
+            <ul className="space-y-2 text-xs text-slate-400">
+              <li className="flex items-start gap-2.5">
+                <MapPin size={16} className="mt-0.5 text-blue-400 shrink-0" />
                 <span className="leading-snug">
                   Jl. Cakrawala Barat III No.4,<br />
-                  Semarang 50149, Jawa Tengah, Indonesia
+                  Semarang 50149, Jawa Tengah
                 </span>
               </li>
-              <li className="flex items-center gap-3">
-                <Phone size={18} className="text-blue-400 shrink-0" />
+              <li className="flex items-center gap-2.5">
+                <Phone size={16} className="text-blue-400 shrink-0" />
                 <a 
                   href={getWhatsAppLink()} 
                   target="_blank" 
@@ -177,8 +177,8 @@ export default function Footer() {
                   +62 813 6010 0705
                 </a>
               </li>
-              <li className="flex items-center gap-3">
-                <Mail size={18} className="text-blue-400 shrink-0" />
+              <li className="flex items-center gap-2.5">
+                <Mail size={16} className="text-blue-400 shrink-0" />
                 <a 
                   href="mailto:mitrasuksesterus12@gmail.com" 
                   className="hover:text-blue-400 transition-colors"
@@ -186,25 +186,24 @@ export default function Footer() {
                   mitrasuksesterus12@gmail.com
                 </a>
               </li>
-              <li className="flex items-start gap-3 pt-1">
-                <Clock size={18} className="mt-0.5 text-red-400 shrink-0" />
+              <li className="flex items-start gap-2.5">
+                <Clock size={16} className="mt-0.5 text-red-400 shrink-0" />
                 <div className="leading-snug">
                   <span className="block font-medium text-slate-300">
-                    Senin – Jumat
+                    Senin – Jumat • 08.00 – 17.00 WIB
                   </span>
-                  <span className="text-xs text-slate-400">08.00 – 17.00 WIB</span>
                 </div>
               </li>
             </ul>
           </motion.div>
         </div>
 
-        {/* DIRECT WHATSAPP ACTION BAR */}
+        {/* DIRECT WHATSAPP ACTION BAR (COMPACT) */}
         <motion.div
           variants={itemVariants}
-          className="mt-14 pt-8 border-t border-slate-800/60 flex flex-col sm:flex-row items-center justify-between gap-4"
+          className="mt-8 pt-4 border-t border-slate-800/60 flex flex-col sm:flex-row items-center justify-between gap-3"
         >
-          <span className="text-xs font-semibold uppercase tracking-wider text-slate-400">
+          <span className="text-[11px] font-semibold uppercase tracking-wider text-slate-400">
             Layanan Pelanggan & Respons Cepat
           </span>
 
@@ -213,21 +212,21 @@ export default function Footer() {
             target="_blank"
             rel="noopener noreferrer"
             className="
-              inline-flex items-center justify-center gap-2.5 rounded-full
-              bg-[#25D366] px-5 py-2.5 text-xs font-bold text-white
-              shadow-lg shadow-emerald-500/20 transition-all duration-300
+              inline-flex items-center justify-center gap-2 rounded-full
+              bg-[#25D366] px-4 py-2 text-xs font-bold text-white
+              shadow-md shadow-emerald-500/20 transition-all duration-300
               hover:bg-[#20bd5a] hover:scale-105 hover:shadow-emerald-500/30
             "
           >
-            <MessageCircle size={16} className="fill-white text-[#25D366]" />
+            <MessageCircle size={15} className="fill-white text-[#25D366]" />
             <span>Hubungi via WhatsApp (+62 821 3601 0705)</span>
           </a>
         </motion.div>
 
-        {/* BOTTOM BAR */}
+        {/* BOTTOM BAR (COMPACT) */}
         <motion.div
           variants={itemVariants}
-          className="mt-8 pt-6 border-t border-slate-800/40 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs opacity-70 text-slate-400"
+          className="mt-4 pt-4 border-t border-slate-800/40 flex flex-col sm:flex-row items-center justify-between gap-2 text-[11px] opacity-70 text-slate-400"
         >
           <p>© 2026 CV. Mitra Sukses Terus. All Rights Reserved.</p>
           <p className="flex items-center gap-1 font-medium">

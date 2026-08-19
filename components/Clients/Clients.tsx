@@ -24,12 +24,12 @@ const clientsData: ClientItem[] = [
 ];
 
 const fadeUpVariants: Variants = {
-  hidden: { opacity: 0, y: 25 },
+  hidden: { opacity: 0, y: 20 },
   visible: {
     opacity: 1,
     y: 0,
     transition: {
-      duration: 0.6,
+      duration: 0.5,
       ease: [0.16, 1, 0.3, 1],
     },
   },
@@ -82,14 +82,16 @@ export default function Clients() {
   const row3 = clientsData.slice(6, 9);
 
   return (
-    <section id="clients" className="relative overflow-hidden bg-slate-50/80 pt-20 pb-16 lg:pt-32 lg:pb-24">
+    <section id="clients" className="relative overflow-hidden bg-slate-50/80 py-14 lg:py-20">
       <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-white via-slate-50/40 to-white" />
-      <div className="pointer-events-none absolute -top-20 -left-20 h-[550px] w-[550px] rounded-full bg-sky-400/20 blur-[130px]" />
-      <div className="pointer-events-none absolute top-1/3 -right-20 h-[600px] w-[600px] rounded-full bg-red-400/15 blur-[140px]" />
+      <div className="pointer-events-none absolute -top-20 -left-20 h-[500px] w-[500px] rounded-full bg-sky-400/15 blur-[130px]" />
+      <div className="pointer-events-none absolute top-1/3 -right-20 h-[500px] w-[500px] rounded-full bg-red-400/10 blur-[130px]" />
 
-      <div className="relative mx-auto max-w-7xl px-6 lg:px-8">
-        <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-12 lg:gap-8">
+      {/* MATCH EXACT NAVBAR CONTAINER */}
+      <div className="mx-auto max-w-6xl px-6 sm:px-10 lg:px-16 relative">
+        <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-12 lg:gap-8">
           
+          {/* KOLOM KIRI: TEKS */}
           <motion.div
             initial="hidden"
             whileInView="visible"
@@ -102,24 +104,24 @@ export default function Clients() {
               KLIEN KAMI
             </div>
 
-            <h2 className="text-3xl font-extrabold tracking-tight text-slate-900 sm:text-4xl lg:text-5xl lg:leading-[1.12]">
+            <h2 className="text-3xl font-extrabold tracking-tight text-slate-900 lg:text-[38px] lg:leading-[1.15]">
               Dipercaya oleh Perusahaan dari{" "}
               <span className="text-red-600">Berbagai Industri</span>
             </h2>
 
             <div className="mt-3 h-1 w-12 rounded-full bg-slate-900" />
 
-            <p className="mt-5 text-base leading-relaxed text-slate-600 sm:text-lg">
+            <p className="mt-4 text-sm leading-relaxed text-slate-600">
               Kami berkomitmen memberikan layanan yang terpercaya, akurat, dan berdampak nyata. Terima kasih kepada para mitra dan klien yang telah mempercayakan pertumbuhan serta keamanan bisnisnya bersama kami.
             </p>
 
-            <div className="mt-8 flex items-center gap-3">
+            <div className="mt-7 flex items-center gap-3">
               <a
                 href="#contact"
                 onClick={scrollToContact}
                 className="
                   group inline-flex items-center gap-2.5 rounded-xl border border-slate-200/80 bg-white px-5 py-3 
-                  text-sm font-bold text-slate-900 shadow-xs 
+                  text-xs sm:text-sm font-bold text-slate-900 shadow-xs 
                   transition-all duration-300 ease-in-out
                   hover:border-[#E53935] hover:bg-[#E53935] hover:text-white hover:shadow-lg hover:shadow-red-500/20
                   active:scale-[0.98] cursor-pointer
@@ -134,9 +136,11 @@ export default function Clients() {
             </div>
           </motion.div>
 
+          {/* KOLOM KANAN: CARD LOGO */}
           <div className="relative lg:col-span-7">
-            <div className="hidden sm:flex flex-col gap-5 relative z-10 py-4">
-              <div className="flex justify-start gap-4 pl-0">
+            <div className="hidden sm:flex flex-col gap-3 relative z-10 py-1 items-end">
+              
+              <div className="flex gap-3">
                 {row1.map((client) => (
                   <FloatingClientCard
                     key={client.id}
@@ -146,7 +150,7 @@ export default function Clients() {
                 ))}
               </div>
 
-              <div className="flex justify-end gap-4 pr-2">
+              <div className="flex gap-3">
                 {row2.map((client) => (
                   <FloatingClientCard
                     key={client.id}
@@ -156,7 +160,7 @@ export default function Clients() {
                 ))}
               </div>
 
-              <div className="flex justify-center gap-4 pl-4">
+              <div className="flex gap-3">
                 {row3.map((client) => (
                   <FloatingClientCard
                     key={client.id}
@@ -165,12 +169,14 @@ export default function Clients() {
                   />
                 ))}
               </div>
+
             </div>
 
-            <div className="sm:hidden relative z-10 -mx-6 px-6 pt-4">
+            {/* MOBILE LAYOUT */}
+            <div className="sm:hidden relative z-10 -mx-6 px-6 pt-2">
               <div className="flex gap-3 overflow-x-auto pb-4 pt-1 snap-x snap-mandatory scrollbar-none">
                 {clientsData.map((client) => (
-                  <div key={client.id} className="snap-center shrink-0 w-[200px]">
+                  <div key={client.id} className="snap-center shrink-0 w-[140px]">
                     <FloatingClientCard
                       client={client}
                       onClick={() => setSelectedClient(client)}
@@ -181,10 +187,11 @@ export default function Clients() {
               </div>
             </div>
 
+            {/* FOOTER LINK */}
             <div className="mt-6 flex flex-col items-center justify-center text-center z-10">
-              <div className="flex items-center gap-2 text-xs font-medium text-slate-500">
-                <div className="flex h-5 w-5 items-center justify-center rounded-full bg-blue-50 text-[#2563EB]">
-                  <Building2 size={12} />
+              <div className="flex items-center gap-1.5 text-xs font-medium text-slate-500">
+                <div className="flex h-4.5 w-4.5 items-center justify-center rounded-full bg-blue-50 text-[#2563EB]">
+                  <Building2 size={11} />
                 </div>
                 <span>Perusahaan Anda bisa menjadi mitra kami berikutnya.</span>
               </div>
@@ -192,7 +199,7 @@ export default function Clients() {
               <a
                 href="#contact"
                 onClick={scrollToContact}
-                className="group mt-1.5 inline-flex items-center gap-1 text-xs font-semibold text-[#2563EB] transition-all hover:underline cursor-pointer"
+                className="group mt-1 inline-flex items-center gap-1 text-xs font-semibold text-[#2563EB] transition-all hover:underline cursor-pointer"
               >
                 <span>→ Konsultasikan kebutuhan bisnis Anda</span>
               </a>
@@ -203,7 +210,7 @@ export default function Clients() {
         </div>
       </div>
 
-      {/* Lightbox / Modal untuk Logo Client */}
+      {/* LIGHTBOX MODAL */}
       <AnimatePresence>
         {selectedClient && (
           <ClientLightboxModal
@@ -227,23 +234,23 @@ function FloatingClientCard({
 }) {
   return (
     <motion.div
-      whileHover={{ scale: 1.05, y: -4 }}
+      whileHover={{ scale: 1.04, y: -3 }}
       whileTap={{ scale: 0.98 }}
       transition={{ type: "spring", stiffness: 350, damping: 22 }}
       onClick={onClick}
       className={`
-        group relative cursor-pointer rounded-2xl border border-slate-200/90 bg-white p-4 sm:p-5 
-        shadow-[0_4px_12px_rgba(15,23,42,0.03)] transition-all duration-300
-        hover:border-red-500 hover:shadow-[0_16px_32px_rgba(220,38,38,0.14)]
-        ${isMobile ? "w-full" : "w-[180px] lg:w-[200px]"}
+        group relative cursor-pointer rounded-xl border border-slate-200/90 bg-white p-3 
+        shadow-xs transition-all duration-300
+        hover:border-red-500 hover:shadow-md hover:shadow-red-500/10
+        ${isMobile ? "w-full" : "w-[125px] md:w-[135px] lg:w-[140px] xl:w-[150px]"}
       `}
     >
-      <div className="relative h-14 w-full flex items-center justify-center">
+      <div className="relative h-11 w-full flex items-center justify-center">
         <Image
           src={client.image}
           alt={client.alt}
           fill
-          className="object-contain p-1 filter transition-all duration-300 group-hover:brightness-105"
+          className="object-contain p-0.5 filter transition-all duration-300 group-hover:brightness-105"
         />
       </div>
     </motion.div>
@@ -258,36 +265,32 @@ function ClientLightboxModal({
   onClose: () => void;
 }) {
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6">
-      {/* Overlay Backdrop */}
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
         transition={{ duration: 0.2 }}
         onClick={onClose}
-        className="fixed inset-0 bg-slate-950/70 backdrop-blur-md"
+        className="fixed inset-0 bg-slate-950/70 backdrop-blur-sm"
       />
 
-      {/* Modal Container */}
       <motion.div
         initial={{ opacity: 0, scale: 0.9, y: 10 }}
         animate={{ opacity: 1, scale: 1, y: 0 }}
         exit={{ opacity: 0, scale: 0.9, y: 10 }}
         transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
-        className="relative z-10 w-full max-w-sm sm:max-w-md overflow-hidden rounded-2xl bg-white p-6 sm:p-8 shadow-2xl border border-slate-100"
+        className="relative z-10 w-full max-w-xs sm:max-w-sm overflow-hidden rounded-2xl bg-white p-6 shadow-2xl border border-slate-100"
       >
-        {/* Tombol Close X */}
         <button
           onClick={onClose}
           aria-label="Tutup"
-          className="absolute top-4 right-4 flex h-8 w-8 items-center justify-center rounded-full bg-slate-100 text-slate-500 hover:bg-slate-200 hover:text-red-600 transition-colors cursor-pointer"
+          className="absolute top-3 right-3 flex h-7 w-7 items-center justify-center rounded-full bg-slate-100 text-slate-500 hover:bg-slate-200 hover:text-red-600 transition-colors cursor-pointer"
         >
-          <X size={16} />
+          <X size={14} />
         </button>
 
-        {/* Gambar Logo Client Ukuran Lebih Besar */}
-        <div className="relative h-44 sm:h-52 w-full flex items-center justify-center mt-2">
+        <div className="relative h-40 w-full flex items-center justify-center mt-2">
           <Image
             src={client.image}
             alt={client.alt}

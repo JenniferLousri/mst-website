@@ -49,27 +49,27 @@ export default function SummaryCards({ inquiries }: SummaryCardsProps) {
   ];
 
   return (
-    <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+    <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
       {cards.map((card, idx) => {
         const Icon = card.icon;
         return (
           <div
             key={idx}
-            className={`flex items-start justify-between rounded-2xl border ${card.borderColor} bg-white p-5 shadow-xs transition-shadow hover:shadow-md`}
+            className={`flex items-start justify-between rounded-xl border ${card.borderColor} bg-white p-3.5 shadow-xs transition-shadow hover:shadow-sm`}
           >
             <div>
-              <p className="text-xs font-semibold text-slate-500">{card.title}</p>
-              <p className="mt-1.5 text-2xl font-extrabold text-slate-900 sm:text-3xl">
+              <p className="text-[11px] font-semibold text-slate-500">{card.title}</p>
+              <p className="mt-0.5 text-xl font-extrabold text-slate-900 sm:text-2xl">
                 {card.value}
               </p>
-              <p className="mt-2 text-[11px] font-medium text-slate-400">
+              <p className="mt-0.5 text-[10px] font-medium text-slate-400">
                 {card.subtext}
               </p>
             </div>
             <div
-              className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl ${card.iconColor}`}
+              className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-lg ${card.iconColor}`}
             >
-              <Icon size={20} strokeWidth={2.2} />
+              <Icon size={16} strokeWidth={2.2} />
             </div>
           </div>
         );
